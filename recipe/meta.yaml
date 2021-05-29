@@ -1,4 +1,4 @@
-{% set version = "0.1.7" %}
+{% set version = "0.2.1" %}
 
 package:
   name: hydrofunctions
@@ -6,12 +6,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/h/hydrofunctions/hydrofunctions-{{ version }}.tar.gz
-  sha256: 6d7c9eff8ee0ff4a365126649236fe5b4285a12eaff1584bd50020a7a8b4471d
+  sha256: 187a170a3154c37439a2dc9aa3df6dac1e111fbe221164ee94cd0afd4af7c032
 
 build:
-  number: 1
+  number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
@@ -36,7 +36,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: "A suite of convenience functions for exploring water data in a Jupyter Notebook"
+  summary: A suite of convenience functions for exploring water data in a Jupyter Notebook
 
 extra:
   recipe-maintainers:
