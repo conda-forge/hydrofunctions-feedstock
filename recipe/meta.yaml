@@ -5,26 +5,26 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/h/hydrofunctions/hydrofunctions-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/h/hydrofunctions/hydrofunctions-{{ version }}.tar.gz
   sha256: 187a170a3154c37439a2dc9aa3df6dac1e111fbe221164ee94cd0afd4af7c032
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - matplotlib-base 
     - ipython
     - numpy >=1.16.0
     - pandas
     - pyarrow
-    - python
+    - python >={{ python_min }}
     - requests
 
 test:
@@ -32,10 +32,12 @@ test:
     - hydrofunctions
   requires:
     - coverage
+    - python {{ python_min }}
   commands:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/mroberge/hydrofunctions
