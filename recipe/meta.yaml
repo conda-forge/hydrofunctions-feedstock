@@ -1,17 +1,18 @@
-{% set version = "0.2.1" %}
+{% set name = "hydrofunctions" %}
+{% set version = "0.2.4" %}
 
 package:
-  name: hydrofunctions
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/h/hydrofunctions/hydrofunctions-{{ version }}.tar.gz
-  sha256: 187a170a3154c37439a2dc9aa3df6dac1e111fbe221164ee94cd0afd4af7c032
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/hydrofunctions-{{ version }}.tar.gz
+  sha256: 4cfd7ef59d62206d71c36309020a201e3a37d0604e9f41a991880310be4cc0d6
 
 build:
-  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
 
 requirements:
   host:
@@ -20,20 +21,17 @@ requirements:
     - pip
   run:
     - python >={{ python_min }}
-    - matplotlib-base 
-    - ipython
+    - importlib-metadata
+    - matplotlib-base
     - numpy >=1.16.0
-    - pandas
-    - pyarrow
-    - python >={{ python_min }}
+    - pandas >=2
     - requests
+    - ipython
+    - pyarrow
 
 test:
   imports:
     - hydrofunctions
-  requires:
-    - coverage
-    - python {{ python_min }}
   commands:
     - pip check
   requires:
